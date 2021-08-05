@@ -1,6 +1,8 @@
 import csv
 import sys
 import argparse
+import pandas as pd
+import tqdm
 
 TASKS = ["CoLA", "SST-2", "QQP", "MNLI", "STS-B", "QNLI", "RTE", "WNLI", "MRPC"]
 COLINTASK = {
@@ -103,7 +105,7 @@ def parsing(task, filename):
 
     path = './parsing_data/' + task + '/' + filename + '.tsv'
     with open(path, 'w', encoding='utf-8', newline='') as f:
-        writer = csv.writer(f, delimiter='\t', quotechar="'")
+        writer = csv.writer(f, delimiter='\t', quoting=csv.QUOTE_NONE, quotechar=None)
         writer.writerows(data_list)
 
 def parsing_MRPC(filename):
@@ -121,7 +123,7 @@ def parsing_MRPC(filename):
 
     path = './parsing_data/MRPC/' + filename + '.tsv'
     with open(path, 'w', encoding='utf-8', newline='') as f:
-        writer = csv.writer(f, delimiter = '\t')
+        writer = csv.writer(f, delimiter='\t', quoting=csv.QUOTE_NONE, quotechar=None)
         writer.writerows(data_list)
 
 def main(argument):
